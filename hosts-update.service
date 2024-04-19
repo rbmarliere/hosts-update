@@ -1,0 +1,12 @@
+[Unit]
+Description=HTTP server that updates /etc/hosts upon request
+ConditionPathExists=%h/hosts-update
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=%h/hosts-update -verbose
+
+[Install]
+WantedBy=default.target
